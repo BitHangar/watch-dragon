@@ -1,0 +1,46 @@
+{
+  "friendlyVersion" : "dev_0.0",
+  "versionDefName" : "APP_RESOURCES",
+  "media" : [
+    {
+      "type" : "png",
+      "defName" : "IMAGE_MENU_ICON",
+      "file" : "images/dragon_menu_icon.png"
+    },
+    {
+      "type" : "png-trans",
+      "defName" : "DRAGON_BACKGROUND",
+      "file" : "/images/dragon_background_trans.png"
+    },
+    {
+      "type" : "png-trans",
+      "defName" : "DRAGON_BLINK_1",
+      "file" : "/images/image1.png"
+    },
+    {
+      "type" : "png-trans",
+      "defName" : "DRAGON_BLINK_2",
+      "file" : "/images/image2.png"
+    },
+    {
+      "type" : "png-trans",
+      "defName" : "DRAGON_BLINK_3",
+      "file" : "/images/image3.png"
+    },
+    {
+      "type" : "png-trans",
+      "defName" : "DRAGON_BLINK_4",
+      "file" : "/images/image4.png"
+    },
+    {
+      "type" : "png",
+      "defName" : "DRAGON_HOUR_HAND",
+      "file" : "images/dragon_watch_hour_hand.png"
+    },
+    {
+      "type" : "png",
+      "defName" : "DRAGON_MINUTE_HAND",
+      "file" : "images/dragon_watch_minute_hand.png"
+    }
+  ]
+}
