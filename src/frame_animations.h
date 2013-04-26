@@ -36,6 +36,7 @@ typedef struct FrameAnimation
 	BmpContainer imageContainer;
 	bool isTransparent : 1;
 	bool isAnimating : 1;
+	bool scheduleStop : 1;
 	int firstResourceId;
 	int resourceCounter;
 	int frameCounter;
@@ -45,7 +46,7 @@ typedef struct FrameAnimation
 void frame_animation_init(FrameAnimation *animation, Layer *destination, GPoint position, int first_resource_id, int num_frames, bool is_transparent);
 void frame_animation_linear(FrameAnimation *animation, AppContextRef ctx, AppTimerHandle timer_handle, uint32_t cookie, int fps, bool continuous);
 void frame_animation_alternating(FrameAnimation *animation, AppContextRef ctx, AppTimerHandle timer_handle,  uint32_t cookie, int fps, bool continuous);
-bool frame_animation_stop(FrameAnimation *animation, AppContextRef ctx, AppTimerHandle timer_handle);
+void frame_animation_stop(FrameAnimation *animation);
 void frame_animation_deinit(FrameAnimation *animation);
 Layer* get_animation_layer(FrameAnimation *animation);
 bool isRunning(FrameAnimation *animation);

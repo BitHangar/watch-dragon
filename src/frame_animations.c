@@ -139,10 +139,11 @@ void frame_animation_linear(FrameAnimation *animation, AppContextRef ctx,
 		animation->resourceCounter = animation->firstResourceId;
 		animation->frameCounter = 0;
 		// If not continuous, we need to stop the timer and hide the layer
-		if (!continuous) {
+		if (!continuous || animation->scheduleStop) {
 			app_timer_cancel_event(ctx, timer_handle);
 			layer_set_hidden(&animation->animationLayer, true);
 			animation->isAnimating = false;
+			animation->scheduleStop = false;
 			return;
 		}
 	}
@@ -204,10 +205,11 @@ void frame_animation_alternating(FrameAnimation *animation, AppContextRef ctx,
 		animation->resourceCounter = animation->firstResourceId;
 		animation->frameCounter = 0;
 		// If not continuous, we need to stop the timer and hide the layer
-		if (!continuous) {
+		if (!continuous || animation->scheduleStop) {
 			app_timer_cancel_event(ctx, timer_handle);
 			layer_set_hidden(&animation->animationLayer, true);
 			animation->isAnimating = false;
+			animation->scheduleStop = false;
 			return;
 		}
 	}
@@ -215,9 +217,8 @@ void frame_animation_alternating(FrameAnimation *animation, AppContextRef ctx,
 	timer_handle = app_timer_send_event(ctx, millis_from_fps, cookie);
 }
 
-// This function will stop the animation that is assigned to the passed AppTimerHandle
-bool frame_animation_stop(FrameAnimation *animation, AppContextRef ctx, AppTimerHandle timer_handle) {
-	// Returns true if timer was successfully cancelled, otherwise returns false
-	animation->isAnimating = false;
-	return app_timer_cancel_event(ctx, timer_handle);
+// This function will stop the animation that is passed to it
+// It will wait until the current animation cycle is complete before stoppings
+void frame_animation_stop(FrameAnimation *animation) {
+	animation->scheduleStop = true;
 }

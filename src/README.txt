@@ -58,8 +58,9 @@ What the above will do is start the animation 10 milliseconds from when the app 
 In the init, we've delcared that the animation will be stored in a FrameAnimation object called ‘frame_animation’, put the animation on the main window at coordinates (10, 10), start at frame 1, there are 10 frames, and the images have no transparency. 
 
 
-Multiple Animations: You can have more than one animation running at the same time, using the same timer handler function in your Pebble app. You also have the ability to cancel one or all of the animations currently running. So, how to do this? Say you want to have two animations running independently of each other. Simply declare two global AppTimerHandle variables in your app. When you write the animation calls, just pass one timer handle to the first, and the other to the second.
-For Example: You have two AppTimerHandle variables in your app
+Multiple Animations: You can have more than one animation running at the same time, using the same timer handler function in your Pebble app. You also have the ability to cancel one or all of the animations currently running. So, how to do this? Say you want to have two animations running independently of each other. Simply declare two global AppTimerHandle variables in your app (not necessary, but recommended). You'll also need to declare two different FrameAnimation objects.
+
+For Example: You have two AppTimerHandle variables in your app (optional)
 
 	AppTimerHandle timer_1;
 	AppTimerHandle timer_2;
@@ -73,17 +74,17 @@ You also have two FrameAnimation objects:
 When you declare your animations:	
 
 	frame_animation_linear(&animation_1, ctx, timer_1,  1, 10, true);
-	frame_animation_linear(&animation_2, ctx, timer_2,  1, 10, true);
+	frame_animation_linear(&animation_2, ctx, timer_2,  2, 10, true);
 
 
-Then, if you want to cancel just the first animation:
+Then, if you want to cancel just the first animation, schedule another timer (using a different cookie) to call this function when you want the animation to stop:
 
-	bool stopped;
-	stopped = frame_animation_stop(&animation_1, ctx, timer_1);
+	frame_animation_stop(&animation_1);
 
+The animation will finish its currently running loop, then stop.
 
-The variable 'stopped' will tell you if the animation was successfully stopped or not.
-You can also have two completely different animations running at the same time! Just declare and set up another FrameAnimation object to store your second animation. You’ll still need a separate AppTimerHandle variable for the second animation to work properly
+IMPORTANT: In order to have multiple animations, please remember to use different cookie values in your timer handler function for each animation! 
+
 **Please Note: Having multiple animations can cause the Pebble to slow down or even crash, please use with caution! 
 
 
