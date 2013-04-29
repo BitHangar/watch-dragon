@@ -31,7 +31,7 @@
 
 #define MY_UUID {0xE9, 0x94, 0x3A, 0x69, 0xEC, 0xE9, 0x45, 0xF6, 0x9E, 0x3A, 0x19, 0xB3, 0xD2, 0x2B, 0x8E, 0x4C}
 
-PBL_APP_INFO(MY_UUID, "Dragon Clock", "Bit Hangar", 1,2 /* App version */, RESOURCE_ID_IMAGE_MENU_ICON, APP_INFO_WATCH_FACE);
+PBL_APP_INFO(MY_UUID, "Dragon Clock", "Bit Hangar", 1,3 /* App version */, RESOURCE_ID_IMAGE_MENU_ICON, APP_INFO_WATCH_FACE);
 
 Window window;
 
