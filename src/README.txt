@@ -2,7 +2,7 @@
 This library is for frame-by-frame animation within a layer. 
 
 
-What you'll need: Bitmap images of all the frames you want to animate; they can be either regular PNG’s or transparent ones. Your “resource_map.json” file needs to declare all your images IN THE ORDER IN WHICH YOU WANT TO ANIMATE THEM. This is very important! You’ll also need a global FrameAnimation object declared in your main program (more on this below).
+What you'll need: Bitmap images of all the frames you want to animate; they can be either regular PNG’s or transparent ones. Your “resource_map.json” file needs to declare all your images IN THE ORDER IN WHICH YOU WANT TO ANIMATE THEM. This is very important! You’ll also need a global FrameAnimation "object" declared in your main program (more on this below).
 
 
 Usage: If you want your animation just to run from the first frame to the last, you can use the ‘frame_animation_linear’ function. It can animate then stop, or continue on a loop. Just pass either 'true' or 'false' for the 'continuous' parameter. If you want the animation to cycle through forwards then backwards, use the  ‘frame_animation_alternating' function. That animation can keep looping or stop also. To stop a looping animation, just pass your FrameAnimation object to ‘frame_animation_stop’.
@@ -86,6 +86,8 @@ Then, if you want to cancel just the first animation, schedule another timer (us
 The animation will finish its currently running loop, then stop.
 
 IMPORTANT: In order to have multiple animations, please remember to use different cookie values in your timer handler function for each animation! 
+
+**Note for multiple animations: If you want more than one frame-by-frame animation in your program, you'll need to set your resource_map.json file up a certain way. Say your first animation is 10 frames; those 10 PNGs will need to be in the order you want them to animate. If your second animation is 5 frames, those will also need to be in order. It's not important which set comes first in your json file. When you initialize your FrameAnimation objects in your program, you'll just have one object point to the first frame in one set, and the other to the second set of frames. 
 
 **Please Note: Having multiple animations can cause the Pebble to slow down or even crash, please use with caution! 
 
