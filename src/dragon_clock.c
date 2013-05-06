@@ -107,7 +107,7 @@ void handle_init(AppContextRef ctx) {
     layer_add_child(&window.layer, &background_layer);
 
     // Set up layer that will hold the blink animation
-   	frame_animation_init(&blink_animation, &window.layer, GPoint(11, 111), RESOURCE_ID_DRAGON_BLINK_1_WHITE, 4, true);
+   	frame_animation_init(&blink_animation, &window.layer, GPoint(11, 111), RESOURCE_ID_DRAGON_BLINK_1_WHITE, 4, true, true);
 
 	update_hand_positions(&hour_hand_image_container, &minute_hand_image_container);	
 }
